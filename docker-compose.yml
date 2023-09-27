@@ -2,30 +2,41 @@ version: "3"
 services:
   likelion-client-api:
     container_name: likelion-client-api
-    image: tmfrk0426/likelion-client-api:${PROFILE}
+    image: tmfrk0426/likelion-client-api:stag
     env_file:
       - "./.env"
     environment:
       - TZ=Asia/Seoul
     hostname: likelion-client-api
+    ports:
+      - "8080:8080"
     network_mode: "host"
     restart: always
 
-  likelion-admin-api:
-    container_name: likelion-admin-api
-    image: tmfrk0426/likelion-admin-api:${PROFILE}
-    env_file:
-      - "./.env"
+#  likelion-admin-api:
+#    container_name: likelion-admin-api
+#    image: tmfrk0426/likelion-admin-api:${PROFILE}
+#    env_file:
+#      - "./.env"
+#    environment:
+#      - TZ=Asia/Seoul
+#    hostname: likelion-admin-api
+#    network_mode: "host"
+#    restart: always
+  likelion-redis:
+    container_name: likelion-redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
     environment:
       - TZ=Asia/Seoul
-    hostname: likelion-admin-api
-    network_mode: "host"
     restart: always
 
   nginx:
     depends_on:
       - likelion-client-api
-      - likelion-admin-api
+      - likelion-redis
+#      - likelion-admin-api
     restart: always
     build:
       dockerfile: Dockerfile
