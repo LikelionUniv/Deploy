@@ -3,13 +3,13 @@ services:
   likelion-client-api:
     container_name: likelion-client-api
     image: tmfrk0426/likelion-client-api:stag
+    ports:
+      - "8080:8080"
     env_file:
       - "./.env"
     environment:
       - TZ=Asia/Seoul
     hostname: likelion-client-api
-    ports:
-      - "8080:8080"
     network_mode: "host"
     restart: always
 
