@@ -26,6 +26,7 @@ services:
   likelion-redis:
     container_name: likelion-redis
     image: redis:latest
+    network_mode: "host"
     ports:
       - "6379:6379"
     environment:
@@ -41,6 +42,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./nginx
+    network_mode: "host"
     ports:
       - "80:80"
     environment:
