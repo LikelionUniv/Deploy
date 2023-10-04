@@ -1,0 +1,22 @@
+name: CD Stag Server
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: api-deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ubuntu
+          key: ${{ secrets.KEY }}
+          script: |
+            sudo docker rm -f ${{ secrets.DOCKER_CLIENT_API_STAG_CONTAINER }}
+            sudo docker rmi ${{ secrets.DOCKER_CLIENT_API_STAG_IMAGE }}
+            docker-compose -f ${{ secrets.DOCKER_COMPOSE_DIRECTORY }} up -d
+            docker image prune -f
