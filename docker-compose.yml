@@ -49,7 +49,7 @@ services:
     depends_on:
       - likelion-client-api
       - likelion-redis
-#      - likelion-admin-api
+      - likelion-client-front
     restart: always
     build:
       dockerfile: Dockerfile

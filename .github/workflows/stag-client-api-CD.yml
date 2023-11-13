@@ -1,4 +1,4 @@
-name: CD Stag Server
+name: CD stag client api
 
 on: workflow_dispatch
 
