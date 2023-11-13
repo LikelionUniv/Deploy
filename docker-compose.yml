@@ -26,7 +26,7 @@ services:
 
   likelion-client-front:
     container_name: likelion-client-front
-    image: byeoung/react-build-image
+    image: byeoung/likelion-client-front:stag
     ports:
       - "3000:3000"
     environment:
