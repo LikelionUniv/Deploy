@@ -23,6 +23,18 @@ services:
 #    hostname: likelion-admin-api
 #    network_mode: "host"
 #    restart: always
+
+  likelion-client-front:
+    container_name: likelion-client-front
+    image: byeoung/react-build-image
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Asia/Seoul
+    hostname: likelion-client-front
+    network_mode: "host"
+    restart: always
+
   likelion-redis:
     container_name: likelion-redis
     image: redis:latest
