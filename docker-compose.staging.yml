@@ -13,16 +13,16 @@ services:
     network_mode: "host"
     restart: always
 
-#  likelion-admin-api:
-#    container_name: likelion-admin-api
-#    image: tmfrk0426/likelion-admin-api:${PROFILE}
-#    env_file:
-#      - "./.env"
-#    environment:
-#      - TZ=Asia/Seoul
-#    hostname: likelion-admin-api
-#    network_mode: "host"
-#    restart: always
+  likelion-admin-api:
+    container_name: likelion-admin-api
+    image: tmfrk0426/likelion-admin-api:stag
+    env_file:
+      - "./.env"
+    environment:
+      - TZ=Asia/Seoul
+    hostname: likelion-admin-api
+    network_mode: "host"
+    restart: always
 
   likelion-client-front:
     container_name: likelion-client-front

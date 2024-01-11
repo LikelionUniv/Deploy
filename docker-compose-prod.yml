@@ -13,32 +13,52 @@ services:
     network_mode: "host"
     restart: always
 
-  #  likelion-admin-api:
-  #    container_name: likelion-admin-api
-  #    image: tmfrk0426/likelion-admin-api:${PROFILE}
-  #    env_file:
-  #      - "./.env"
-  #    environment:
-  #      - TZ=Asia/Seoul
-  #    hostname: likelion-admin-api
-  #    network_mode: "host"
-  #    restart: always
+  likelion-admin-api:
+    container_name: likelion-admin-api
+    image: tmfrk0426/likelion-admin-api:prod
+    ports:
+      - "8090:8090"
+    env_file:
+      - "./.env"
+    environment:
+      - TZ=Asia/Seoul
+    hostname: likelion-admin-api
+    network_mode: "host"
+    restart: always
+
 
   likelion-client-front:
     container_name: likelion-client-front
     image: byeoung/likelion-client-front:prod
     ports:
       - "3000:3000"
+    env_file:
+      - "./.env.front"
     environment:
       - TZ=Asia/Seoul
     hostname: likelion-client-front
     network_mode: "host"
     restart: always
 
+#  likelion-admin-front:
+#    container_name: likelion-admin-front
+#    image: byeoung/likelion-admin-front:prod
+#    ports:
+#      - "3100:3100"
+#    env_file:
+#      - "./.env.front"
+#    environment:
+#      - TZ=Asia/Seoul
+#    hostname: likelion-admin-front
+#    network_mode: "host"
+#    restart: always
+
   nginx:
     depends_on:
       - likelion-client-api
       - likelion-client-front
+      - likelion-admin-api
+#      - likelion-admin-front
     restart: always
     build:
       dockerfile: Dockerfile
